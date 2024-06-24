@@ -16,6 +16,10 @@ import {
   StatsPage,
   VerifyEmailPage,
   adminLoader,
+  TasksPerDayPage,
+  tasksPerDayLoader,
+  myTasksLoader,
+  statsLoader,
 } from "@/routes";
 import { ThemeProvider } from "@/components/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -23,6 +27,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   AdminErrorBoundary,
   AuthErrorBoundary,
+  TaskPerDayErrorBoundary,
 } from "./routes/error-boundaries";
 import { loader as authLoader } from "@/routes/auth-page";
 import { Toaster } from "./components/ui/sonner";
@@ -74,8 +79,21 @@ function App() {
           children: [
             {
               path: "my-tasks",
-              element: <MyTasksPage />,
+              children: [
+                {
+                  index: true,
+                  element: <MyTasksPage />,
+                  loader: myTasksLoader(queryClient),
+                },
+                {
+                  path: ":date",
+                  element: <TasksPerDayPage />,
+                  loader: tasksPerDayLoader(queryClient),
+                  errorElement: <TaskPerDayErrorBoundary />,
+                },
+              ],
             },
+
             {
               path: "create-tasks",
               element: <CreateTasksPage />,
@@ -87,6 +105,7 @@ function App() {
             {
               path: "stats",
               element: <StatsPage />,
+              loader: statsLoader(queryClient),
             },
             {
               element: <AdminRoutesLayout />,
@@ -109,7 +128,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <RouterProvider router={router} />
-        <Toaster />
+        <Toaster richColors={true} />
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
