@@ -25,7 +25,7 @@ const Users = () => {
     sort: "createdAt+asc" as filterSortTypes["sort"],
   });
 
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     ...getAllUsersQuery(filterSort),
     placeholderData: keepPreviousData,
   });
@@ -48,6 +48,9 @@ const Users = () => {
       sort: sort as filterSortTypes["sort"],
     }));
   };
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="px-2">
@@ -57,8 +60,8 @@ const Users = () => {
       <div className="container mx-auto w-full pb-10">
         <DataTable
           columns={columns}
-          data={data.users || []}
-          rowCount={data.total || 1}
+          data={data?.users || []}
+          rowCount={data?.total || 1}
           handlePageChange={handlePageChange}
           currentPage={filterSort.page}
           sortFilter={
