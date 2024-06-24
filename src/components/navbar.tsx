@@ -10,7 +10,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { MdAdminPanelSettings, MdQueryStats } from "react-icons/md";
 import { IoPowerSharp } from "react-icons/io5";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import customAxios from "@/lib/axios-config";
 
 type NavbarProps = {
@@ -19,7 +19,7 @@ type NavbarProps = {
 };
 const Navbar = ({ user, removeUser }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: () => {
       return customAxios.delete("/auth/logout");
@@ -29,6 +29,7 @@ const Navbar = ({ user, removeUser }: NavbarProps) => {
     },
     onSuccess: () => {
       removeUser();
+      queryClient.removeQueries();
       redirect("/auth");
     },
   });
@@ -38,7 +39,7 @@ const Navbar = ({ user, removeUser }: NavbarProps) => {
 
   return (
     <div
-      className={`fixed left-0 top-0 h-screen w-screen ${isMenuOpen ? "" : "-translate-x-full"} flex flex-col justify-between bg-background transition-transform duration-200 animate-out sm:translate-x-full`}
+      className={`fixed left-0 top-0 h-screen w-screen ${isMenuOpen ? "" : "-translate-x-full"} z-40 flex flex-col justify-between bg-background transition-transform duration-200 animate-out sm:translate-x-full`}
     >
       <div className="z-0 flex items-center justify-between px-2 py-1">
         <div className="sm:mr-1 sm:-translate-x-full sm:pr-2">
