@@ -6,15 +6,19 @@ import CreateTasksPage from "./create-tasks-page";
 import ErrorPage from "./error-page";
 import ForgotPasswordPage from "./forgot-password-page";
 import LandingPage from "./landing-page";
-import MyTasksPage from "./my-tasks-page";
+import MyTasksPage, { loader as myTasksLoader } from "./my-tasks-page";
 import ProfilePage from "./profile-page";
 import ProtectedRoutesLayout from "./protected-routes-layout";
 import ResetPasswordPage from "./reset-password-page";
 import Root from "./root";
-import StatsPage from "./stats-page";
+import StatsPage, { loader as statsLoader } from "./stats-page";
+import TasksPerDayPage, {
+  loader as tasksPerDayLoader,
+} from "./tasks-per-day-page";
 import VerifyEmailPage from "./verify-email-page";
 
 export {
+  TasksPerDayPage,
   ErrorPage,
   AuthPage,
   AuthRoutesLayout,
@@ -31,4 +35,7 @@ export {
   StatsPage,
   VerifyEmailPage,
   adminLoader,
+  tasksPerDayLoader,
+  myTasksLoader,
+  statsLoader,
 };
