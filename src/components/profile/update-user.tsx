@@ -18,7 +18,8 @@ import FormError from "@/components/form-error";
 import { useMutation } from "@tanstack/react-query";
 import { useProtectedUserContext } from "@/routes/protected-routes-layout";
 import customAxios from "@/lib/axios-config";
-import { AxiosError } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
+import { User } from "@/utils/types";
 
 const UpdateUserForm: React.FC = () => {
   const [success, setSuccess] = useState<string | undefined>(undefined);
@@ -33,9 +34,11 @@ const UpdateUserForm: React.FC = () => {
   });
   const { mutate, isPending } = useMutation({
     mutationFn: (data: z.infer<typeof profileSchema>) =>
-      customAxios.patch(`/users/${user?.id!}`, data),
+      customAxios
+        .patch(`/users/${user?.id!}`, data)
+        .then((res: AxiosResponse<User>) => res.data),
     onSuccess: (data) => {
-      setUser(data.data);
+      setUser(data);
       setSuccess("Profile updated successfully");
     },
     onError: (error) => {
