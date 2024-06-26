@@ -1,5 +1,3 @@
-import { AxiosError } from "axios";
-
 export type User = {
   id: string;
   email: string;
@@ -8,9 +6,18 @@ export type User = {
   role: "ADMIN" | "USER";
 };
 
-export class AxiosErrorWithRetry extends AxiosError {
-  constructor(public retry: boolean) {
-    super();
-    this.retry = false;
-  }
-}
+export type TaskSummary = {
+  id: number;
+  title: string;
+};
+
+export type TasksByDate = {
+  date: Date;
+  tasks: TaskSummary[];
+};
+export type TaskPerDay = {
+  id: number;
+  title: string;
+  isCompleted: Date | null;
+  createdAt: Date;
+};
