@@ -2,19 +2,50 @@ import CountStats from "@/components/stats/count-stats";
 import ProductivityStats from "@/components/stats/my-stats";
 import customAxios from "@/lib/axios-config";
 import { QueryClient } from "@tanstack/react-query";
+import { AxiosError, AxiosResponse } from "axios";
 
 export const getProductivityStatsQuery = (
   duration: "daily" | "weekly" | "monthly",
 ) => ({
   queryKey: ["productivity-stats", duration],
   queryFn: () =>
-    customAxios
-      .get(`/tasks/productivity-stats?duration=${duration}`)
-      .then((res) => res.data),
+    customAxios.get(`/tasks/productivity-stats?duration=${duration}`).then(
+      (
+        res: AxiosResponse<
+          Array<{
+            date: string;
+            completed: number;
+            created: number;
+          }>
+        >,
+      ) => res.data,
+    ),
+  onError: (error: Error) => {
+    if (error instanceof AxiosError) {
+      throw new Error(error.response?.data.message || "An error occurred");
+    }
+    throw new Error(error.message || "An error occurred");
+  },
 });
 export const getMyStatsQuery = () => ({
   queryKey: ["stats"],
-  queryFn: () => customAxios.get(`/tasks/stats`).then((res) => res.data),
+  queryFn: () =>
+    customAxios.get(`/tasks/stats`).then(
+      (
+        res: AxiosResponse<{
+          completed: number;
+          total: number;
+          longestStreak: number;
+        }>,
+      ) => res.data,
+    ),
+
+  onError: (error: Error) => {
+    if (error instanceof AxiosError) {
+      throw new Error(error.response?.data.message || "An error occurred");
+    }
+    throw new Error(error.message || "An error occurred");
+  },
 });
 
 export const loader = (queryClient: QueryClient) => () => {
