@@ -17,7 +17,7 @@ const Linechart: React.FC<{
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={data}>
         <XAxis dataKey={xKey} />
-        <YAxis label={{ value: yKey, angle: -90, position: "insideLeft" }} />
+        <YAxis label={{ value: yKey, angle: -90 }} />
         <Tooltip />
         <Legend />
         <Line dataKey="completed" type="monotone" stroke="#16a34a" />
