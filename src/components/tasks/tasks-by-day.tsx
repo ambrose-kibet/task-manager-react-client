@@ -61,23 +61,16 @@ const TasksByDay: React.FC<{ date: string }> = ({ date }) => {
       <div className="grid w-full grid-cols-1 pb-1">
         <div className="mb-4 grid w-full max-w-7xl grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
           {((data?.tasks ?? []).length &&
-            (data?.tasks || []).map(
-              (task: {
-                id: number;
-                title: string;
-                description: string;
-                isCompleted: boolean;
-              }) => (
-                <SingleTask
-                  key={task.id}
-                  id={task.id}
-                  title={task.title}
-                  description={task.description}
-                  isCompleted={task.isCompleted}
-                  date={date}
-                />
-              ),
-            )) || <p className="text-center text-lg">No tasks found</p>}
+            (data?.tasks || []).map((task) => (
+              <SingleTask
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                description={task.description}
+                isCompleted={task.isCompleted}
+                date={date}
+              />
+            ))) || <p className="text-center text-lg">No tasks found</p>}
         </div>
         {(Math.ceil((data?.count || 1) / 10) > 1 && (
           <Pagination
