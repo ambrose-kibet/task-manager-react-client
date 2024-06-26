@@ -18,6 +18,9 @@ const UserStats: React.FC = () => {
     ...getSignUpStatsQuery(duration),
     placeholderData: keepPreviousData,
   });
+  if (!userStats) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="relative mx-auto h-[500px] w-screen max-w-xs sm:max-w-screen-sm lg:max-w-screen-lg">
