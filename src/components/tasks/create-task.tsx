@@ -61,7 +61,7 @@ const CreateTaskForm: React.FC = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto flex h-full w-screen max-w-[450px] flex-col items-center justify-center gap-y-2 rounded-xl border p-6 px-2 shadow"
+        className="mx-auto flex h-full w-full max-w-[450px] flex-col items-center justify-center gap-y-2 rounded-xl border p-6 px-2 shadow"
       >
         <h3 className="text-center text-xl font-semibold">Create Task</h3>
         <div className="flex w-full flex-col gap-y-2">
