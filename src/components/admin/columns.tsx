@@ -8,7 +8,7 @@ export type TUser = {
   role: "USER" | "ADMIN";
   name: string;
   email: string;
-  avatar: string;
+  avatar: string | null;
 };
 
 export const columns: ColumnDef<TUser>[] = [
@@ -19,7 +19,7 @@ export const columns: ColumnDef<TUser>[] = [
       const value = row.original.avatar;
       return (
         <Avatar>
-          <AvatarImage src={value} />
+          <AvatarImage src={value ?? ""} />
           <AvatarFallback>
             <FaUser className="h-4 w-4 text-primary" />
           </AvatarFallback>
