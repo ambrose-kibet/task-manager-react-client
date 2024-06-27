@@ -1,5 +1,6 @@
 {
   "name": "task-manager-client",
+  "homepage": "https://ambrose-kibet.github.io/task-manager-react-client/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
