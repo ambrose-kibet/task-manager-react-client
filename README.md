@@ -57,9 +57,10 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://react-bookstore003.netlify.app)
+- [Live Demo Link](https://task-manager-client-react.netlify.app/)
 
 <!-- GETTING STARTED -->
+
 ## 🗄️ Server
 
 [server](https://github.com/ambrose-kibet/task-manager-server)
