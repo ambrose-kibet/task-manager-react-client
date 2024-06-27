@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/task-manager-react-client",
+  base: "/task-manager-react-client/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
