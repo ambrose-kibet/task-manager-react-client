@@ -60,6 +60,9 @@
 - [Live Demo Link](https://react-bookstore003.netlify.app)
 
 <!-- GETTING STARTED -->
+## 🗄️ Server
+
+[server](https://github.com/ambrose-kibet/task-manager-server)
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
@@ -71,7 +74,7 @@ To get this repository to your desired folder:
 
 ```sh
   cd my-folder
-  git clone https://github.com/ambrose-kibet/task-manager-server.git
+  git clone https://github.com/ambrose-kibet/task-manager-react-client.git
 ```
 
 ### env vars
@@ -95,8 +98,9 @@ In order to run this project you need:
 To get app running:
 
 ```sh
+cd task-manager-react-client
  npm install
- npm dev
+ npm run dev
 ```
 
 - <!-- AUTHORS -->
