@@ -24,6 +24,15 @@ import { AxiosError } from "axios";
 const RegistrationForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const form = useForm<z.infer<typeof RegistrationSchema>>({
+    resolver: zodResolver(RegistrationSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      name: "",
+      isShowPassword: false,
+    },
+  });
   const { mutate, isPending } = useMutation({
     mutationFn: (values: z.infer<typeof RegistrationSchema>) => {
       return customAxios.post("/auth/register", values);
@@ -38,17 +47,10 @@ const RegistrationForm = () => {
       setSuccess(
         "Registration successful please check your email to verify your account",
       );
+      form.reset();
     },
   });
-  const form = useForm<z.infer<typeof RegistrationSchema>>({
-    resolver: zodResolver(RegistrationSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      name: "",
-      isShowPassword: false,
-    },
-  });
+
   function onSubmit(values: z.infer<typeof RegistrationSchema>) {
     setError("");
     setSuccess("");
