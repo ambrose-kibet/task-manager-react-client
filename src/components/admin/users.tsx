@@ -61,7 +61,7 @@ const Users = () => {
         <DataTable
           columns={columns}
           data={data?.users || []}
-          rowCount={data?.total || 1}
+          rowCount={data?.count || 1}
           handlePageChange={handlePageChange}
           currentPage={filterSort.page}
           sortFilter={
