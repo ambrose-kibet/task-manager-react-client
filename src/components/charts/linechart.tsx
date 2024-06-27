@@ -9,7 +9,7 @@ import {
 } from "recharts";
 
 const Linechart: React.FC<{
-  data: { date: string; count: number; verified: number }[];
+  data: { date: string; completed: number; created: number }[];
   xKey: string;
   yKey: string;
 }> = ({ data = [], xKey = "", yKey = "" }) => {

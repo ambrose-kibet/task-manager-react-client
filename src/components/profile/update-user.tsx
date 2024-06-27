@@ -35,7 +35,7 @@ const UpdateUserForm: React.FC = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: (data: z.infer<typeof profileSchema>) =>
       customAxios
-        .patch(`/users/${user?.id!}`, data)
+        .patch(`/users/${user?.id || ""}`, data)
         .then((res: AxiosResponse<User>) => res.data),
     onSuccess: (data) => {
       setUser(data);

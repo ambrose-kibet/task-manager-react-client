@@ -36,7 +36,11 @@ const ProductivityStats: React.FC = () => {
           </SelectContent>
         </Select>
       </div>
-      <LineChart data={prodStats} yKey={`${duration} Tasks`} xKey={"date"} />
+      <LineChart
+        data={prodStats ?? []}
+        yKey={`${duration} Tasks`}
+        xKey={"date"}
+      />
     </div>
   );
 };
