@@ -28,20 +28,12 @@ export const loader: LoaderFunction = async ({ request }) => {
     if (response.status === 200) {
       setLocalStorageItem("user", JSON.stringify(response.data as User));
       redirect("/my-tasks");
-      return {
-        success: "Authentication successful, redirecting to dashboard...",
-        user: response.data,
-        error: null,
-      };
+      return null;
     } else {
       throw new Response(response.statusText, { status: 400 });
     }
   }
-  return {
-    success: null,
-    user: null,
-    error: null,
-  };
+  return null;
 };
 
 const AuthPage: React.FC = () => {
