@@ -1,5 +1,4 @@
 import CardWrapper from "@/components/auth/card-wrapper";
-
 import { useState } from "react";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import FormError from "../form-error";
@@ -104,6 +103,9 @@ const VerificationForm = () => {
             <Button type="submit" className="w-full" disabled={isPending}>
               Verify Email
             </Button>
+            {form.formState.errors.token && (
+              <FormError message={form.formState.errors.token.message} />
+            )}
             <FormError message={error} />
             <FormSuccess message={success} />
           </form>
