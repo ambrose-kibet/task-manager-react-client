@@ -12,9 +12,15 @@ export const RegistrationSchema = z.object({
 });
 
 export const LoginSchema = z.object({
-  email: z.string().email({ message: "please provide a valid email" }),
+  email: z
+    .string({
+      required_error: "Email is required",
+    })
+    .email({ message: "please provide a valid email" }),
   password: z
-    .string()
+    .string({
+      required_error: "Password is required",
+    })
     .min(8, { message: "Password must be at least 8 characters" }),
   isShowPassword: z.optional(z.boolean()),
 });
