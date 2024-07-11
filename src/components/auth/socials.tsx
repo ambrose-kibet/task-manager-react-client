@@ -1,18 +1,17 @@
 import { FcGoogle } from "react-icons/fc";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa6";
+import { initiateOAuth } from "@/lib/helpers";
 
 const Socials: React.FC = () => {
-  const handleClick = (provider: "google" | "github") => {
-    window.location.href = `${import.meta.env.VITE_SERVER_URL}/auth/${provider}/callback`;
-  };
   return (
     <div className="mx-auto flex items-center gap-x-4">
       <Button
         size="lg"
         className="w-full"
         variant={"ghost"}
-        onClick={() => handleClick("google")}
+        onClick={() => initiateOAuth("google")}
+        data-testId="google-oauth"
       >
         <FcGoogle className="h-6 w-6" />
       </Button>
@@ -20,7 +19,8 @@ const Socials: React.FC = () => {
         size="lg"
         className="w-full"
         variant={"ghost"}
-        onClick={() => handleClick("github")}
+        onClick={() => initiateOAuth("github")}
+        data-testId="github-oauth"
       >
         <FaGithub className="h-6 w-6" />
       </Button>
