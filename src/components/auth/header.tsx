@@ -1,4 +1,4 @@
-import Logo from "../logo";
+import Logo from "@/components/logo";
 
 const Header: React.FC<{ label: string }> = ({ label }) => {
   return (
